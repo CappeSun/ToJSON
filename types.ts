@@ -1,14 +1,17 @@
+const consoleType = ['home', 'handheld', 'hybrid'] as const;
+type ConsoleType = (typeof consoleType)[number];
+
 export type Console = {
     name: string;
     year: number;
     brand: string;
-    type: string;       // Home, handheld, hybrid
+    type: ConsoleType;       // Home, handheld, hybrid
 }
 
 export type Game = {
     title: string;
     year: number;
-    console: string[];
+    consoles: string[];
     genres: string[];
     developers: string[];
 }
@@ -19,5 +22,5 @@ export type Track = {
     game: string;
     duration: number;
     composer: string;
-    arranger?: string;
+    arranger: string;
 }
