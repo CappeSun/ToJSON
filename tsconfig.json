@@ -3,6 +3,6 @@
         "strict": true,
         "outDir": "dist",
         "target": "es6",
-    "lib": ["es2015", "DOM"]
+        "lib": ["DOM", "ES2016"]
     }
 }
