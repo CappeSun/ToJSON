@@ -15,6 +15,26 @@ const inpComposer = document.getElementById('inpComposer') as HTMLInputElement;
 const inpArranger = document.getElementById('inpArranger') as HTMLInputElement;
 const outputField = document.getElementById('outputField') as HTMLParagraphElement;
 
+interface InputFields {
+	console: string[];
+	game: string[];
+	track: string[];
+  }
+  
+  const inputFields: InputFields = {
+	console: ["inpName", "inpYear", "inpBrand", "inpType"],
+	game: ["inpName", "inpYear", "inpConsoles", "inpGenres", "inpDevelopers"],
+	track: [
+	  "inpName",
+	  "inpYear",
+	  "inpGame",
+	  "inpDurationMin",
+	  "inpDurationSec",
+	  "inpComposer",
+	  "inpArranger",
+	],
+  };
+
 updateInpDisplay();
 
 function updateInpDisplay(){
