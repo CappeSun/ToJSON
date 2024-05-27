@@ -33,6 +33,32 @@ function updateInpDisplay(){
 	inpYear.placeholder = {console: 'Year (2014...)', game: 'Year (2022...)', track: 'Year (2005...)'}[typeOfEntry.value as string] as string;
 }
 
+const generateBtn = document.getElementById("generateBtn") as HTMLButtonElement;
+
+generateBtn.addEventListener("click", () => {
+  const selectedValue = typeOfEntry.value as keyof InputFields;
+  const fieldsToShow = inputFields[selectedValue];
+  const result: Record<string, string | number> = {};
+
+  fieldsToShow.forEach((field) => {
+    const input = document.getElementById(field) as HTMLInputElement;
+    let value: string | number = input.value;
+
+    // Convert to int if the input isa year, duration, or other number type
+    if ((field as string).includes("Year") || (field as string).includes("DurationMin") || (field as string).includes("DurationSec")) {
+      value = parseInt(value, 10);
+    }
+
+    result[field] = value;
+  });
+
+  if (selectedValue === "console") {
+    result["type"] = inpType.value;
+  }
+
+  console.log(result);
+});
+
 typeOfEntry.addEventListener('change', () => updateInpDisplay());
 
 let toJSON = {};
