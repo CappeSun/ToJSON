@@ -1,2 +1,2 @@
-const consoleType = ['home', 'handheld', 'hybrid', 'vr'];
+const consoleType = ['handheld', 'home', 'hybrid', 'vr'];
 export {};

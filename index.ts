@@ -19,39 +19,23 @@ interface InputFields {
 	console: string[];
 	game: string[];
 	track: string[];
-  }
+}
   
-  const inputFields: InputFields = {
+const inputFields: InputFields = {
 	console: ["inpName", "inpYear", "inpBrand", "inpType"],
 	game: ["inpName", "inpYear", "inpConsoles", "inpGenres", "inpDevelopers"],
 	track: [
-	  "inpName",
-	  "inpYear",
-	  "inpGame",
-	  "inpDurationMin",
-	  "inpDurationSec",
-	  "inpComposer",
-	  "inpArranger",
+		"inpName",
+		"inpYear",
+		"inpGame",
+		"inpDurationMin",
+		"inpDurationSec",
+		"inpComposer",
+		"inpArranger",
 	],
-  };
+};
 
 updateInpDisplay();
-
-function updateInpDisplay(){
-	inpBrand.style.display = ['console'].includes(typeOfEntry.value) ? '' : 'none';
-	inpType.style.display = ['console'].includes(typeOfEntry.value) ? '' : 'none';
-	inpConsoles.style.display = ['game'].includes(typeOfEntry.value) ? '' : 'none';
-	inpGenres.style.display = ['game'].includes(typeOfEntry.value) ? '' : 'none';
-	inpDevelopers.style.display = ['game'].includes(typeOfEntry.value) ? '' : 'none';
-	inpGame.style.display = ['track'].includes(typeOfEntry.value) ? '' : 'none';
-	inpDurationMin.style.display = ['track'].includes(typeOfEntry.value) ? '' : 'none';
-	inpDurationSec.style.display = ['track'].includes(typeOfEntry.value) ? '' : 'none';
-	inpComposer.style.display = ['track'].includes(typeOfEntry.value) ? '' : 'none';
-	inpArranger.style.display = ['track'].includes(typeOfEntry.value) ? '' : 'none';
-
-	inpName.placeholder = {console: 'Name (N3DS...)', game: 'Name (Elden Ring...)', track: 'Name (Waluigi Pinball...)'}[typeOfEntry.value as string] as string;
-	inpYear.placeholder = {console: 'Year (2014...)', game: 'Year (2022...)', track: 'Year (2005...)'}[typeOfEntry.value as string] as string;
-}
 
 const generateBtn = document.getElementById("generateBtn") as HTMLButtonElement;
 
@@ -79,8 +63,31 @@ generateBtn.addEventListener("click", () => {
   console.log(result);
 });
 
-typeOfEntry.addEventListener('change', () => updateInpDisplay());
-
 let toJSON = {};
 
-outputField.textContent = JSON.stringify(toJSON);
+// outputField.textContent = JSON.stringify(toJSON);
+
+function updateInpDisplay(){
+	inpBrand.style.display = ['console'].includes(typeOfEntry.value) ? '' : 'none';
+	inpType.style.display = ['console'].includes(typeOfEntry.value) ? '' : 'none';
+	inpConsoles.style.display = ['game'].includes(typeOfEntry.value) ? '' : 'none';
+	inpGenres.style.display = ['game'].includes(typeOfEntry.value) ? '' : 'none';
+	inpDevelopers.style.display = ['game'].includes(typeOfEntry.value) ? '' : 'none';
+	inpGame.style.display = ['track'].includes(typeOfEntry.value) ? '' : 'none';
+	inpDurationMin.style.display = ['track'].includes(typeOfEntry.value) ? '' : 'none';
+	inpDurationSec.style.display = ['track'].includes(typeOfEntry.value) ? '' : 'none';
+	inpComposer.style.display = ['track'].includes(typeOfEntry.value) ? '' : 'none';
+	inpArranger.style.display = ['track'].includes(typeOfEntry.value) ? '' : 'none';
+
+	inpName.placeholder = {console: 'Name (N3DS...)', game: 'Name (Elden Ring...)', track: 'Name (Waluigi Pinball...)'}[typeOfEntry.value as string] as string;
+	inpYear.placeholder = {console: 'Year (2014...)', game: 'Year (2022...)', track: 'Year (2005...)'}[typeOfEntry.value as string] as string;
+
+	inputFields[typeOfEntry.value as keyof InputFields].forEach((fieldId) =>{
+		if (['inpType'].includes(fieldId))
+			(document.getElementById(fieldId) as HTMLSelectElement).selectedIndex = 0;
+		else
+			(document.getElementById(fieldId) as HTMLInputElement).value = '';
+	});
+}
+
+typeOfEntry.addEventListener('change', () => updateInpDisplay());
