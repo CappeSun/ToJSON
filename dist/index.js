@@ -40,3 +40,26 @@ typeOfEntry.addEventListener("change", () => {
     }
   }
 });
+
+const generateBtn = document.getElementById("generateBtn");
+
+generateBtn.addEventListener("click", function () {
+    const selectedValue = typeOfEntry.value;
+    const fieldsToShow = inputFields[selectedValue];
+    const result = {};
+    console.log("Click");
+    fieldsToShow.forEach(function (field) {
+        const input = document.getElementById(field);
+        let value = input.value;
+
+        // Convert to number if the input isa year, duration, or other number type
+        if (field.includes("Year") || field.includes("DurationMin") || field.includes("DurationSec")) {
+            value = parseInt(value, 10);
+        }
+        result[field] = value;
+    });
+    if (selectedValue === "console") {
+        result["type"] = inpType.value;
+    }
+    console.log(result);
+});

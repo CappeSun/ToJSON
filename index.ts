@@ -25,15 +25,15 @@ typeOfEntry.addEventListener("change", () => {
   const selectedValue = typeOfEntry.value as keyof InputFields;
   const fieldsToShow = inputFields[selectedValue];
 
-  document.querySelectorAll("input").forEach((input) => {
-    input.style.display = "none";
+  document.querySelectorAll("input, select").forEach((input) => {
+    (input as HTMLElement).style.display = "none";
   });
 
   inpType.style.display = "none";
 
   if (selectedValue) {
     fieldsToShow.forEach((field) => {
-      const input = document.getElementById(field);
+      const input = document.getElementById(field) as HTMLElement;
       if (input) {
         input.style.display = "block";
       }
@@ -50,4 +50,30 @@ typeOfEntry.addEventListener("change", () => {
       inpType.style.display = "block";
     }
   }
+});
+
+const generateBtn = document.getElementById("generateBtn") as HTMLButtonElement;
+
+generateBtn.addEventListener("click", () => {
+  const selectedValue = typeOfEntry.value as keyof InputFields;
+  const fieldsToShow = inputFields[selectedValue];
+  const result: Record<string, string | number> = {};
+
+  fieldsToShow.forEach((field) => {
+    const input = document.getElementById(field) as HTMLInputElement;
+    let value: string | number = input.value;
+
+    // Convert to int if the input isa year, duration, or other number type
+    if ((field as string).includes("Year") || (field as string).includes("DurationMin") || (field as string).includes("DurationSec")) {
+      value = parseInt(value, 10);
+    }
+
+    result[field] = value;
+  });
+
+  if (selectedValue === "console") {
+    result["type"] = inpType.value;
+  }
+
+  console.log(result);
 });
