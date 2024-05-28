@@ -1,6 +1,6 @@
 "use strict";
 function updateInpDisplay() {
-    inpBrand.style.display = ["console"].includes(typeOfEntry.value) ? "" : "none";
+    inpBrand.style.display = ["console"].includes(typeOfEntry.value) ? "" : "none"; // Select which fields are displayed with what type of entry
     inpType.style.display = ["console"].includes(typeOfEntry.value) ? "" : "none";
     inpConsoles.style.display = ["game"].includes(typeOfEntry.value) ? "" : "none";
     inpGenres.style.display = ["game"].includes(typeOfEntry.value) ? "" : "none";
@@ -19,4 +19,3 @@ function updateInpDisplay() {
             document.getElementById(fieldId).value = "";
     });
 }
-typeOfEntry.addEventListener("change", () => updateInpDisplay());

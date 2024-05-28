@@ -69,4 +69,4 @@ generateBtn.addEventListener("click", () => {
   outputField.value = JSON.stringify(result, null, 2);
 });
 
-typeOfEntry.addEventListener("change", () => updateInpDisplay());
+typeOfEntry.addEventListener("change", () => updateInpDisplay());		// Update fields on changed entry type
