@@ -35,7 +35,7 @@ const inputFields: InputFields = {
   ],
 };
 
-updateInpDisplay();
+updateInpDisplay();		// Init fields on page load or reload
 
 const generateBtn = document.getElementById("generateBtn") as HTMLButtonElement;
 

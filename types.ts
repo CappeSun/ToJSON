@@ -20,7 +20,7 @@ export type Track = {
     title: string;
     year: number;
     game: string;
-    duration: number;
+    duration: number;       // In seconds
     composer: string;
     arranger: string;
 }

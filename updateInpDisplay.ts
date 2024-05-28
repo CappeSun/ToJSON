@@ -15,7 +15,8 @@ function updateInpDisplay() {
 
 	inputFields[typeOfEntry.value as keyof InputFields].forEach((fieldId) => {
 		if (["inpType"].includes(fieldId))
-		(document.getElementById(fieldId) as HTMLSelectElement).selectedIndex = 0;
-		else (document.getElementById(fieldId) as HTMLInputElement).value = "";
+			(document.getElementById(fieldId) as HTMLSelectElement).selectedIndex = 0;
+		else
+			(document.getElementById(fieldId) as HTMLInputElement).value = "";
 	});
 }
