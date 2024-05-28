@@ -1,4 +1,4 @@
-import { Console, Game, Track } from "./types.js";
+import { Console, Game, Track, ConsoleType } from "./types.js";
 
 const typeOfEntry = document.getElementById("typeOfEntry") as HTMLSelectElement;
 const inpName = document.getElementById("inpName") as HTMLInputElement;
@@ -13,7 +13,10 @@ const inpDurationMin = document.getElementById("inpDurationMin") as HTMLInputEle
 const inpDurationSec = document.getElementById("inpDurationSec") as HTMLInputElement;
 const inpComposer = document.getElementById("inpComposer") as HTMLInputElement;
 const inpArranger = document.getElementById("inpArranger") as HTMLInputElement;
+
+const inpPretty = document.getElementById("inpPretty") as HTMLInputElement;
 const outputField = document.getElementById("outputField") as HTMLTextAreaElement;
+const generateBtn: HTMLButtonElement = document.getElementById("generateBtn") as HTMLButtonElement;
 
 interface InputFields {
   console: string[];
@@ -37,9 +40,7 @@ const inputFields: InputFields = {
 
 updateInpDisplay();		// Init fields on page load or reload
 
-const generateBtn = document.getElementById("generateBtn") as HTMLButtonElement;
-
-generateBtn.addEventListener("click", () => {
+/*generateBtn.addEventListener("click", () => {
   const selectedValue = typeOfEntry.value as keyof InputFields;
   const fieldsToShow = inputFields[selectedValue];
   const result: Record<string, string | number> = {};
@@ -67,6 +68,47 @@ generateBtn.addEventListener("click", () => {
   console.log(result);
 
   outputField.value = JSON.stringify(result, null, 2);
-});
+});*/
 
-typeOfEntry.addEventListener("change", () => updateInpDisplay());		// Update fields on changed entry type
+function generateJSON(){
+	let result: Console | Game | Track;
+	switch (typeOfEntry.value){
+		case 'console':
+			result = {
+				name: inpName.value,
+				year: parseInt(inpYear.value, 10),
+				brand: inpBrand.value,
+				type: inpType.value as ConsoleType
+			}
+			break;
+		case 'game':
+			result = {
+				title: inpName.value,
+				year: parseInt(inpYear.value, 10),
+				consoles: inpConsoles.value.split(', '),
+				genres: inpGenres.value.split(', '),
+				developers: inpDevelopers.value.split(', ')
+			}
+			break;
+		case 'track':
+			result = {
+				title: inpName.value,
+				year: parseInt(inpYear.value, 10),
+				game: inpGame.value,
+				duration: parseInt(inpDurationMin.value) * 60 + parseInt(inpDurationSec.value),
+				composer: inpComposer.value,
+				arranger: inpArranger.value
+			}
+			break;
+		default:
+			return;
+	}
+
+	outputField.value = inpPretty.checked ? JSON.stringify(result, null, 3) : JSON.stringify(result);
+};
+
+generateBtn.addEventListener('click', () => generateJSON());		// Generate JSON on button click
+
+inpPretty.addEventListener('change', () => generateJSON());		// Also generate JSON on pretty print update
+
+typeOfEntry.addEventListener('change', () => updateInpDisplay());		// Update fields on changed entry type

@@ -33,7 +33,7 @@ function updateInpDisplay(): void{
 	inpComposer.style.display = ["track"].includes(typeOfEntry.value) ? "" : "none";
 	inpArranger.style.display = ["track"].includes(typeOfEntry.value) ? "" : "none";
 
-	inpName.placeholder = {console: "Name (N3DS...)", game: "Name (Elden Ring...)", track: "Name (Waluigi Pinball...)"}[typeOfEntry.value as string] as string;		// Select which placeholders to show with what type of entry
+	inpName.placeholder = {console: "Name (N3DS...)", game: "Title (Elden Ring...)", track: "Title (Waluigi Pinball...)"}[typeOfEntry.value as string] as string;		// Select which placeholders to show with what type of entry
 	inpYear.placeholder = {console: "Year (2014...)", game: "Year (2022...)", track: "Year (2005...)"}[typeOfEntry.value as string] as string;
 
 	inputFields[typeOfEntry.value as keyof InputFields].forEach((fieldId) =>{
