@@ -57,42 +57,6 @@ updateInpDisplay(); // Init fields on page load or reload
 
   outputField.value = JSON.stringify(result, null, 2);
 });*/
-function generateJSON() {
-    let result;
-    switch (typeOfEntry.value) {
-        case 'console':
-            result = {
-                name: inpName.value,
-                year: parseInt(inpYear.value, 10),
-                brand: inpBrand.value,
-                type: inpType.value
-            };
-            break;
-        case 'game':
-            result = {
-                title: inpName.value,
-                year: parseInt(inpYear.value, 10),
-                consoles: inpConsoles.value.split(', '),
-                genres: inpGenres.value.split(', '),
-                developers: inpDevelopers.value.split(', ')
-            };
-            break;
-        case 'track':
-            result = {
-                title: inpName.value,
-                year: parseInt(inpYear.value, 10),
-                game: inpGame.value,
-                duration: parseInt(inpDurationMin.value) * 60 + parseInt(inpDurationSec.value),
-                composer: inpComposer.value,
-                arranger: inpArranger.value
-            };
-            break;
-        default:
-            return;
-    }
-    outputField.value = inpPretty.checked ? JSON.stringify(result, null, 3) : JSON.stringify(result);
-}
-;
 generateBtn.addEventListener('click', () => generateJSON()); // Generate JSON on button click
 inpPretty.addEventListener('change', () => generateJSON()); // Also generate JSON on pretty print update
 typeOfEntry.addEventListener('change', () => updateInpDisplay()); // Update fields on changed entry type

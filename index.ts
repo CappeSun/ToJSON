@@ -1,4 +1,4 @@
-import { Console, Game, Track, ConsoleType } from "./types.js";
+import {} from "./types.js";
 
 const typeOfEntry = document.getElementById("typeOfEntry") as HTMLSelectElement;
 const inpName = document.getElementById("inpName") as HTMLInputElement;
@@ -16,7 +16,7 @@ const inpArranger = document.getElementById("inpArranger") as HTMLInputElement;
 
 const inpPretty = document.getElementById("inpPretty") as HTMLInputElement;
 const outputField = document.getElementById("outputField") as HTMLTextAreaElement;
-const generateBtn: HTMLButtonElement = document.getElementById("generateBtn") as HTMLButtonElement;
+const generateBtn = document.getElementById("generateBtn") as HTMLButtonElement;
 
 interface InputFields {
   console: string[];
@@ -69,43 +69,6 @@ updateInpDisplay();		// Init fields on page load or reload
 
   outputField.value = JSON.stringify(result, null, 2);
 });*/
-
-function generateJSON(){
-	let result: Console | Game | Track;
-	switch (typeOfEntry.value){
-		case 'console':
-			result = {
-				name: inpName.value,
-				year: parseInt(inpYear.value, 10),
-				brand: inpBrand.value,
-				type: inpType.value as ConsoleType
-			}
-			break;
-		case 'game':
-			result = {
-				title: inpName.value,
-				year: parseInt(inpYear.value, 10),
-				consoles: inpConsoles.value.split(', '),
-				genres: inpGenres.value.split(', '),
-				developers: inpDevelopers.value.split(', ')
-			}
-			break;
-		case 'track':
-			result = {
-				title: inpName.value,
-				year: parseInt(inpYear.value, 10),
-				game: inpGame.value,
-				duration: parseInt(inpDurationMin.value) * 60 + parseInt(inpDurationSec.value),
-				composer: inpComposer.value,
-				arranger: inpArranger.value
-			}
-			break;
-		default:
-			return;
-	}
-
-	outputField.value = inpPretty.checked ? JSON.stringify(result, null, 3) : JSON.stringify(result);
-};
 
 generateBtn.addEventListener('click', () => generateJSON());		// Generate JSON on button click
 
