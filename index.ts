@@ -1,4 +1,4 @@
-import {} from "./types.js";
+import {} from "./types.js";		// TypeScript cries if this isn't here
 
 const typeOfEntry = document.getElementById("typeOfEntry") as HTMLSelectElement;
 const inpName = document.getElementById("inpName") as HTMLInputElement;
