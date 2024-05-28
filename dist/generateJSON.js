@@ -33,4 +33,3 @@ function generateJSON() {
     }
     outputField.value = inpPretty.checked ? JSON.stringify(result, null, 3) : JSON.stringify(result);
 }
-;

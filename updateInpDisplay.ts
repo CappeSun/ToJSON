@@ -42,4 +42,4 @@ function updateInpDisplay(): void{
 		else
 			(document.getElementById(fieldId) as HTMLInputElement).value = "";
 	});
-};
+}

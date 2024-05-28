@@ -18,6 +18,9 @@ const inpPretty = document.getElementById("inpPretty") as HTMLInputElement;
 const outputField = document.getElementById("outputField") as HTMLTextAreaElement;
 const generateBtn = document.getElementById("generateBtn") as HTMLButtonElement;
 
+declare function updateInpDisplay(): void;
+declare function generateJSON(): void;
+
 interface InputFields {
   console: string[];
   game: string[];
